@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 自动生成代码，请勿修改 -->
+<mapper namespace="TDBSCRIPTINFO">
+	<!-- 添加-->
+	<insert id="addTDbScriptInfo" parameterType="net.jahhan.codecenter.pojo.TDbScriptInfo" useGeneratedKeys="true" keyProperty="dbScriptInfoId">
+		INSERT INTO t_db_script_info (	
+		<trim prefixOverrides=",">
+			<if test="dbScriptInfoId != null"> , db_script_info_id </if>
+			<if test="version != null"> , version </if>
+			<if test="sourceId != null"> , source_id </if>
+			<if test="creator != null"> , creator </if>
+			<if test="createTime != null"> , create_time </if>
+			<if test="content != null"> , content </if>
+			<if test="status != null"> , status </if>
+			<if test="modifyTimestamp != null"> , modify_timestamp </if>
+		</trim>   
+		)
+		VALUES (               
+		<trim prefixOverrides=",">
+			<if test="dbScriptInfoId != null"> , #{dbScriptInfoId} </if>
+			<if test="version != null"> , #{version} </if>
+			<if test="sourceId != null"> , #{sourceId} </if>
+			<if test="creator != null"> , #{creator} </if>
+			<if test="createTime != null"> , #{createTime} </if>
+			<if test="content != null"> , #{content} </if>
+			<if test="status != null"> , #{status} </if>
+			<if test="modifyTimestamp != null"> , #{modifyTimestamp} </if>
+		</trim>   
+		)  
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delTDbScriptInfo" parameterType="net.jahhan.codecenter.pojo.TDbScriptInfo">
+		DELETE FROM t_db_script_info        
+		WHERE db_script_info_id = #{dbScriptInfoId}
+	</delete>
+	
+	<!-- 删除指定的主键列表的记录-->
+	<delete id="delTDbScriptInfoByIds" parameterType="collection">
+		DELETE FROM t_db_script_info         
+		WHERE db_script_info_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</delete>
+	
+	<!-- 全部更新 -->
+	<update id="updateTDbScriptInfo" parameterType="net.jahhan.codecenter.pojo.TDbScriptInfo">
+		UPDATE  t_db_script_info       
+		SET  
+		<trim prefixOverrides=",">
+				, version = #{version}
+				, source_id = #{sourceId}
+				, creator = #{creator}
+				, create_time = #{createTime}
+				, content = #{content}
+				, status = #{status}
+				, modify_timestamp = #{modifyTimestamp}
+		</trim>
+		WHERE
+			db_script_info_id = #{dbScriptInfoId}
+	</update>
+	
+	<!-- 部分更新 -->
+	<update id="updatePartTDbScriptInfo" parameterType="net.jahhan.codecenter.pojo.TDbScriptInfo">
+		UPDATE  t_db_script_info       
+		SET  
+		<trim prefixOverrides=",">
+			<if test="version != null">, version= #{version} </if>
+			<if test="sourceId != null">, source_id= #{sourceId} </if>
+			<if test="creator != null">, creator= #{creator} </if>
+			<if test="createTime != null">, create_time= #{createTime} </if>
+			<if test="content != null">, content= #{content} </if>
+			<if test="status != null">, status= #{status} </if>
+			<if test="modifyTimestamp != null">, modify_timestamp= #{modifyTimestamp} </if>
+		</trim>
+		WHERE 
+			db_script_info_id = #{dbScriptInfoId}
+	</update>
+	
+	<!-- 修改指定的主键列表的记录，部分更新-->
+	<update id="updatePartTDbScriptInfoByIds" parameterType="map">
+		UPDATE  t_db_script_info       
+		SET
+		<trim prefixOverrides=",">
+			<if test="newObj.version != null">, version= #{newObj.version} </if>
+			<if test="newObj.sourceId != null">, source_id= #{newObj.sourceId} </if>
+			<if test="newObj.creator != null">, creator= #{newObj.creator} </if>
+			<if test="newObj.createTime != null">, create_time= #{newObj.createTime} </if>
+			<if test="newObj.content != null">, content= #{newObj.content} </if>
+			<if test="newObj.status != null">, status= #{newObj.status} </if>
+			<if test="newObj.modifyTimestamp != null">, modify_timestamp= #{newObj.modifyTimestamp} </if>
+		</trim>  
+		WHERE db_script_info_id IN
+		<foreach item="item" collection="ids" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+		<if test="oldObj!= null">
+			<if test="oldObj.version != null"> AND version = #{oldObj.version} </if>
+			<if test="oldObj.sourceId != null"> AND source_id = #{oldObj.sourceId} </if>
+			<if test="oldObj.creator != null"> AND creator = #{oldObj.creator} </if>
+			<if test="oldObj.createTime != null"> AND create_time = #{oldObj.createTime} </if>
+			<if test="oldObj.content != null"> AND content = #{oldObj.content} </if>
+			<if test="oldObj.status != null"> AND status = #{oldObj.status} </if>
+			<if test="oldObj.modifyTimestamp != null"> AND modify_timestamp = #{oldObj.modifyTimestamp} </if>
+		</if>
+	</update>
+	
+	<!-- 查询单条-->
+	<select id="queryTDbScriptInfo" parameterType="net.jahhan.codecenter.pojo.page.TDbScriptInfoPage" resultType="net.jahhan.codecenter.pojo.TDbScriptInfo">
+		SELECT	
+			 db_script_info_id as  dbScriptInfoId  ,
+			 version as  version  ,
+			 source_id as  sourceId  ,
+			 creator as  creator  ,
+			 create_time as  createTime  ,
+			 content as  content  ,
+			 status as  status  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_db_script_info 
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbScriptInfoId != null"> AND db_script_info_id = #{dbScriptInfoId} </if>
+			<if test="version != null"> AND version = #{version} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="content != null"> AND content = #{content} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT 1
+	</select>
+	
+	<!-- 精确查询 -->
+	<select id="listTDbScriptInfo" parameterType="net.jahhan.codecenter.pojo.page.TDbScriptInfoPage" resultType="net.jahhan.codecenter.pojo.TDbScriptInfo">
+		SELECT	
+			 db_script_info_id as  dbScriptInfoId  ,
+			 version as  version  ,
+			 source_id as  sourceId  ,
+			 creator as  creator  ,
+			 create_time as  createTime  ,
+			 content as  content  ,
+			 status as  status  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_db_script_info  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbScriptInfoId != null"> AND db_script_info_id = #{dbScriptInfoId} </if>
+			<if test="version != null"> AND version = #{version} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="content != null"> AND content = #{content} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		<if test="order_by != null"> ORDER BY ${order_by} </if>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 精确查询数量 -->
+	<select id="countTDbScriptInfo" parameterType="net.jahhan.codecenter.pojo.page.TDbScriptInfoPage" resultType="_long">
+		SELECT COUNT(1)	                          			   	     		        
+		FROM t_db_script_info    
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbScriptInfoId != null"> AND db_script_info_id = #{dbScriptInfoId} </if>
+			<if test="version != null"> AND version = #{version} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="content != null"> AND content = #{content} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+	</select>
+	
+	
+	<!-- 根据id查询-->
+	<select id="listTDbScriptInfoByIds" parameterType="collection" resultType="net.jahhan.codecenter.pojo.TDbScriptInfo">
+		SELECT	
+			db_script_info_id as  dbScriptInfoId  ,
+			version as  version  ,
+			source_id as  sourceId  ,
+			creator as  creator  ,
+			create_time as  createTime  ,
+			content as  content  ,
+			status as  status  ,
+			modify_timestamp as  modifyTimestamp  
+		FROM t_db_script_info    
+		WHERE db_script_info_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</select>
+	
+	<!-- 根据精确条件获取所有主键列表-->
+	<select id="listIds" parameterType="net.jahhan.codecenter.pojo.page.TDbScriptInfoPage" resultType="Long">
+		SELECT	
+			db_script_info_id as dbScriptInfoId
+		FROM t_db_script_info  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbScriptInfoId != null"> AND db_script_info_id = #{dbScriptInfoId} </if>
+			<if test="version != null"> AND version = #{version} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="content != null"> AND content = #{content} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 获取最大主键-->
+	<select id="selectMaxTDbScriptInfoSequence" resultType="long">
+		SELECT max(db_script_info_id) as max_sequence FROM  t_db_script_info    
+	</select>	
+</mapper>

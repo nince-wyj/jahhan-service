@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 自动生成代码，请勿修改 -->
+<mapper namespace="TDBSOURCE">
+	<!-- 添加-->
+	<insert id="addTDbSource" parameterType="net.jahhan.codecenter.pojo.TDbSource" useGeneratedKeys="true" keyProperty="sourceId">
+		INSERT INTO t_db_source (	
+		<trim prefixOverrides=",">
+			<if test="sourceId != null"> , source_id </if>
+			<if test="sourceName != null"> , source_name </if>
+			<if test="modifyTimestamp != null"> , modify_timestamp </if>
+		</trim>   
+		)
+		VALUES (               
+		<trim prefixOverrides=",">
+			<if test="sourceId != null"> , #{sourceId} </if>
+			<if test="sourceName != null"> , #{sourceName} </if>
+			<if test="modifyTimestamp != null"> , #{modifyTimestamp} </if>
+		</trim>   
+		)  
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delTDbSource" parameterType="net.jahhan.codecenter.pojo.TDbSource">
+		DELETE FROM t_db_source        
+		WHERE source_id = #{sourceId}
+	</delete>
+	
+	<!-- 删除指定的主键列表的记录-->
+	<delete id="delTDbSourceByIds" parameterType="collection">
+		DELETE FROM t_db_source         
+		WHERE source_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</delete>
+	
+	<!-- 全部更新 -->
+	<update id="updateTDbSource" parameterType="net.jahhan.codecenter.pojo.TDbSource">
+		UPDATE  t_db_source       
+		SET  
+		<trim prefixOverrides=",">
+				, source_name = #{sourceName}
+				, modify_timestamp = #{modifyTimestamp}
+		</trim>
+		WHERE
+			source_id = #{sourceId}
+	</update>
+	
+	<!-- 部分更新 -->
+	<update id="updatePartTDbSource" parameterType="net.jahhan.codecenter.pojo.TDbSource">
+		UPDATE  t_db_source       
+		SET  
+		<trim prefixOverrides=",">
+			<if test="sourceName != null">, source_name= #{sourceName} </if>
+			<if test="modifyTimestamp != null">, modify_timestamp= #{modifyTimestamp} </if>
+		</trim>
+		WHERE 
+			source_id = #{sourceId}
+	</update>
+	
+	<!-- 修改指定的主键列表的记录，部分更新-->
+	<update id="updatePartTDbSourceByIds" parameterType="map">
+		UPDATE  t_db_source       
+		SET
+		<trim prefixOverrides=",">
+			<if test="newObj.sourceName != null">, source_name= #{newObj.sourceName} </if>
+			<if test="newObj.modifyTimestamp != null">, modify_timestamp= #{newObj.modifyTimestamp} </if>
+		</trim>  
+		WHERE source_id IN
+		<foreach item="item" collection="ids" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+		<if test="oldObj!= null">
+			<if test="oldObj.sourceName != null"> AND source_name = #{oldObj.sourceName} </if>
+			<if test="oldObj.modifyTimestamp != null"> AND modify_timestamp = #{oldObj.modifyTimestamp} </if>
+		</if>
+	</update>
+	
+	<!-- 查询单条-->
+	<select id="queryTDbSource" parameterType="net.jahhan.codecenter.pojo.page.TDbSourcePage" resultType="net.jahhan.codecenter.pojo.TDbSource">
+		SELECT	
+			 source_id as  sourceId  ,
+			 source_name as  sourceName  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_db_source 
+		<trim prefix="where" prefixOverrides="and">
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="sourceName != null"> AND source_name = #{sourceName} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT 1
+	</select>
+	
+	<!-- 精确查询 -->
+	<select id="listTDbSource" parameterType="net.jahhan.codecenter.pojo.page.TDbSourcePage" resultType="net.jahhan.codecenter.pojo.TDbSource">
+		SELECT	
+			 source_id as  sourceId  ,
+			 source_name as  sourceName  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_db_source  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="sourceName != null"> AND source_name = #{sourceName} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		<if test="order_by != null"> ORDER BY ${order_by} </if>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 精确查询数量 -->
+	<select id="countTDbSource" parameterType="net.jahhan.codecenter.pojo.page.TDbSourcePage" resultType="_long">
+		SELECT COUNT(1)	                          			   	     		        
+		FROM t_db_source    
+		<trim prefix="where" prefixOverrides="and">
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="sourceName != null"> AND source_name = #{sourceName} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+	</select>
+	
+	
+	<!-- 根据id查询-->
+	<select id="listTDbSourceByIds" parameterType="collection" resultType="net.jahhan.codecenter.pojo.TDbSource">
+		SELECT	
+			source_id as  sourceId  ,
+			source_name as  sourceName  ,
+			modify_timestamp as  modifyTimestamp  
+		FROM t_db_source    
+		WHERE source_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</select>
+	
+	<!-- 根据精确条件获取所有主键列表-->
+	<select id="listIds" parameterType="net.jahhan.codecenter.pojo.page.TDbSourcePage" resultType="Long">
+		SELECT	
+			source_id as sourceId
+		FROM t_db_source  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="sourceName != null"> AND source_name = #{sourceName} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 获取最大主键-->
+	<select id="selectMaxTDbSourceSequence" resultType="long">
+		SELECT max(source_id) as max_sequence FROM  t_db_source    
+	</select>	
+</mapper>

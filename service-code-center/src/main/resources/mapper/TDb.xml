@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 自动生成代码，请勿修改 -->
+<mapper namespace="TDB">
+	<!-- 添加-->
+	<insert id="addTDb" parameterType="net.jahhan.codecenter.pojo.TDb" useGeneratedKeys="true" keyProperty="dbId">
+		INSERT INTO t_db (	
+		<trim prefixOverrides=",">
+			<if test="dbId != null"> , db_id </if>
+			<if test="sourceId != null"> , source_id </if>
+			<if test="dbName != null"> , db_name </if>
+			<if test="dbEnvironment != null"> , db_environment </if>
+			<if test="writeUrl != null"> , write_url </if>
+			<if test="writeUser != null"> , write_user </if>
+			<if test="writePassword != null"> , write_password </if>
+			<if test="readUrl != null"> , read_url </if>
+			<if test="readUser != null"> , read_user </if>
+			<if test="readPassword != null"> , read_password </if>
+			<if test="modifyTimestamp != null"> , modify_timestamp </if>
+		</trim>   
+		)
+		VALUES (               
+		<trim prefixOverrides=",">
+			<if test="dbId != null"> , #{dbId} </if>
+			<if test="sourceId != null"> , #{sourceId} </if>
+			<if test="dbName != null"> , #{dbName} </if>
+			<if test="dbEnvironment != null"> , #{dbEnvironment} </if>
+			<if test="writeUrl != null"> , #{writeUrl} </if>
+			<if test="writeUser != null"> , #{writeUser} </if>
+			<if test="writePassword != null"> , #{writePassword} </if>
+			<if test="readUrl != null"> , #{readUrl} </if>
+			<if test="readUser != null"> , #{readUser} </if>
+			<if test="readPassword != null"> , #{readPassword} </if>
+			<if test="modifyTimestamp != null"> , #{modifyTimestamp} </if>
+		</trim>   
+		)  
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delTDb" parameterType="net.jahhan.codecenter.pojo.TDb">
+		DELETE FROM t_db        
+		WHERE db_id = #{dbId}
+	</delete>
+	
+	<!-- 删除指定的主键列表的记录-->
+	<delete id="delTDbByIds" parameterType="collection">
+		DELETE FROM t_db         
+		WHERE db_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</delete>
+	
+	<!-- 全部更新 -->
+	<update id="updateTDb" parameterType="net.jahhan.codecenter.pojo.TDb">
+		UPDATE  t_db       
+		SET  
+		<trim prefixOverrides=",">
+				, source_id = #{sourceId}
+				, db_name = #{dbName}
+				, db_environment = #{dbEnvironment}
+				, write_url = #{writeUrl}
+				, write_user = #{writeUser}
+				, write_password = #{writePassword}
+				, read_url = #{readUrl}
+				, read_user = #{readUser}
+				, read_password = #{readPassword}
+				, modify_timestamp = #{modifyTimestamp}
+		</trim>
+		WHERE
+			db_id = #{dbId}
+	</update>
+	
+	<!-- 部分更新 -->
+	<update id="updatePartTDb" parameterType="net.jahhan.codecenter.pojo.TDb">
+		UPDATE  t_db       
+		SET  
+		<trim prefixOverrides=",">
+			<if test="sourceId != null">, source_id= #{sourceId} </if>
+			<if test="dbName != null">, db_name= #{dbName} </if>
+			<if test="dbEnvironment != null">, db_environment= #{dbEnvironment} </if>
+			<if test="writeUrl != null">, write_url= #{writeUrl} </if>
+			<if test="writeUser != null">, write_user= #{writeUser} </if>
+			<if test="writePassword != null">, write_password= #{writePassword} </if>
+			<if test="readUrl != null">, read_url= #{readUrl} </if>
+			<if test="readUser != null">, read_user= #{readUser} </if>
+			<if test="readPassword != null">, read_password= #{readPassword} </if>
+			<if test="modifyTimestamp != null">, modify_timestamp= #{modifyTimestamp} </if>
+		</trim>
+		WHERE 
+			db_id = #{dbId}
+	</update>
+	
+	<!-- 修改指定的主键列表的记录，部分更新-->
+	<update id="updatePartTDbByIds" parameterType="map">
+		UPDATE  t_db       
+		SET
+		<trim prefixOverrides=",">
+			<if test="newObj.sourceId != null">, source_id= #{newObj.sourceId} </if>
+			<if test="newObj.dbName != null">, db_name= #{newObj.dbName} </if>
+			<if test="newObj.dbEnvironment != null">, db_environment= #{newObj.dbEnvironment} </if>
+			<if test="newObj.writeUrl != null">, write_url= #{newObj.writeUrl} </if>
+			<if test="newObj.writeUser != null">, write_user= #{newObj.writeUser} </if>
+			<if test="newObj.writePassword != null">, write_password= #{newObj.writePassword} </if>
+			<if test="newObj.readUrl != null">, read_url= #{newObj.readUrl} </if>
+			<if test="newObj.readUser != null">, read_user= #{newObj.readUser} </if>
+			<if test="newObj.readPassword != null">, read_password= #{newObj.readPassword} </if>
+			<if test="newObj.modifyTimestamp != null">, modify_timestamp= #{newObj.modifyTimestamp} </if>
+		</trim>  
+		WHERE db_id IN
+		<foreach item="item" collection="ids" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+		<if test="oldObj!= null">
+			<if test="oldObj.sourceId != null"> AND source_id = #{oldObj.sourceId} </if>
+			<if test="oldObj.dbName != null"> AND db_name = #{oldObj.dbName} </if>
+			<if test="oldObj.dbEnvironment != null"> AND db_environment = #{oldObj.dbEnvironment} </if>
+			<if test="oldObj.writeUrl != null"> AND write_url = #{oldObj.writeUrl} </if>
+			<if test="oldObj.writeUser != null"> AND write_user = #{oldObj.writeUser} </if>
+			<if test="oldObj.writePassword != null"> AND write_password = #{oldObj.writePassword} </if>
+			<if test="oldObj.readUrl != null"> AND read_url = #{oldObj.readUrl} </if>
+			<if test="oldObj.readUser != null"> AND read_user = #{oldObj.readUser} </if>
+			<if test="oldObj.readPassword != null"> AND read_password = #{oldObj.readPassword} </if>
+			<if test="oldObj.modifyTimestamp != null"> AND modify_timestamp = #{oldObj.modifyTimestamp} </if>
+		</if>
+	</update>
+	
+	<!-- 查询单条-->
+	<select id="queryTDb" parameterType="net.jahhan.codecenter.pojo.page.TDbPage" resultType="net.jahhan.codecenter.pojo.TDb">
+		SELECT	
+			 db_id as  dbId  ,
+			 source_id as  sourceId  ,
+			 db_name as  dbName  ,
+			 db_environment as  dbEnvironment  ,
+			 write_url as  writeUrl  ,
+			 write_user as  writeUser  ,
+			 write_password as  writePassword  ,
+			 read_url as  readUrl  ,
+			 read_user as  readUser  ,
+			 read_password as  readPassword  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_db 
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbId != null"> AND db_id = #{dbId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="dbName != null"> AND db_name = #{dbName} </if>
+			<if test="dbEnvironment != null"> AND db_environment = #{dbEnvironment} </if>
+			<if test="writeUrl != null"> AND write_url = #{writeUrl} </if>
+			<if test="writeUser != null"> AND write_user = #{writeUser} </if>
+			<if test="writePassword != null"> AND write_password = #{writePassword} </if>
+			<if test="readUrl != null"> AND read_url = #{readUrl} </if>
+			<if test="readUser != null"> AND read_user = #{readUser} </if>
+			<if test="readPassword != null"> AND read_password = #{readPassword} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT 1
+	</select>
+	
+	<!-- 精确查询 -->
+	<select id="listTDb" parameterType="net.jahhan.codecenter.pojo.page.TDbPage" resultType="net.jahhan.codecenter.pojo.TDb">
+		SELECT	
+			 db_id as  dbId  ,
+			 source_id as  sourceId  ,
+			 db_name as  dbName  ,
+			 db_environment as  dbEnvironment  ,
+			 write_url as  writeUrl  ,
+			 write_user as  writeUser  ,
+			 write_password as  writePassword  ,
+			 read_url as  readUrl  ,
+			 read_user as  readUser  ,
+			 read_password as  readPassword  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_db  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbId != null"> AND db_id = #{dbId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="dbName != null"> AND db_name = #{dbName} </if>
+			<if test="dbEnvironment != null"> AND db_environment = #{dbEnvironment} </if>
+			<if test="writeUrl != null"> AND write_url = #{writeUrl} </if>
+			<if test="writeUser != null"> AND write_user = #{writeUser} </if>
+			<if test="writePassword != null"> AND write_password = #{writePassword} </if>
+			<if test="readUrl != null"> AND read_url = #{readUrl} </if>
+			<if test="readUser != null"> AND read_user = #{readUser} </if>
+			<if test="readPassword != null"> AND read_password = #{readPassword} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		<if test="order_by != null"> ORDER BY ${order_by} </if>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 精确查询数量 -->
+	<select id="countTDb" parameterType="net.jahhan.codecenter.pojo.page.TDbPage" resultType="_long">
+		SELECT COUNT(1)	                          			   	     		        
+		FROM t_db    
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbId != null"> AND db_id = #{dbId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="dbName != null"> AND db_name = #{dbName} </if>
+			<if test="dbEnvironment != null"> AND db_environment = #{dbEnvironment} </if>
+			<if test="writeUrl != null"> AND write_url = #{writeUrl} </if>
+			<if test="writeUser != null"> AND write_user = #{writeUser} </if>
+			<if test="writePassword != null"> AND write_password = #{writePassword} </if>
+			<if test="readUrl != null"> AND read_url = #{readUrl} </if>
+			<if test="readUser != null"> AND read_user = #{readUser} </if>
+			<if test="readPassword != null"> AND read_password = #{readPassword} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+	</select>
+	
+	
+	<!-- 根据id查询-->
+	<select id="listTDbByIds" parameterType="collection" resultType="net.jahhan.codecenter.pojo.TDb">
+		SELECT	
+			db_id as  dbId  ,
+			source_id as  sourceId  ,
+			db_name as  dbName  ,
+			db_environment as  dbEnvironment  ,
+			write_url as  writeUrl  ,
+			write_user as  writeUser  ,
+			write_password as  writePassword  ,
+			read_url as  readUrl  ,
+			read_user as  readUser  ,
+			read_password as  readPassword  ,
+			modify_timestamp as  modifyTimestamp  
+		FROM t_db    
+		WHERE db_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</select>
+	
+	<!-- 根据精确条件获取所有主键列表-->
+	<select id="listIds" parameterType="net.jahhan.codecenter.pojo.page.TDbPage" resultType="Long">
+		SELECT	
+			db_id as dbId
+		FROM t_db  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="dbId != null"> AND db_id = #{dbId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="dbName != null"> AND db_name = #{dbName} </if>
+			<if test="dbEnvironment != null"> AND db_environment = #{dbEnvironment} </if>
+			<if test="writeUrl != null"> AND write_url = #{writeUrl} </if>
+			<if test="writeUser != null"> AND write_user = #{writeUser} </if>
+			<if test="writePassword != null"> AND write_password = #{writePassword} </if>
+			<if test="readUrl != null"> AND read_url = #{readUrl} </if>
+			<if test="readUser != null"> AND read_user = #{readUser} </if>
+			<if test="readPassword != null"> AND read_password = #{readPassword} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 获取最大主键-->
+	<select id="selectMaxTDbSequence" resultType="long">
+		SELECT max(db_id) as max_sequence FROM  t_db    
+	</select>	
+</mapper>

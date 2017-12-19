@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 自动生成代码，请勿修改 -->
+<mapper namespace="TSERVICE">
+	<!-- 添加-->
+	<insert id="addTService" parameterType="net.jahhan.codecenter.pojo.TService" useGeneratedKeys="true" keyProperty="serviceId">
+		INSERT INTO t_service (	
+		<trim prefixOverrides=",">
+			<if test="serviceId != null"> , service_id </if>
+			<if test="serviceCode != null"> , service_code </if>
+			<if test="serviceName != null"> , service_name </if>
+			<if test="creator != null"> , creator </if>
+			<if test="createTime != null"> , create_time </if>
+			<if test="status != null"> , status </if>
+			<if test="modifyTimestamp != null"> , modify_timestamp </if>
+		</trim>   
+		)
+		VALUES (               
+		<trim prefixOverrides=",">
+			<if test="serviceId != null"> , #{serviceId} </if>
+			<if test="serviceCode != null"> , #{serviceCode} </if>
+			<if test="serviceName != null"> , #{serviceName} </if>
+			<if test="creator != null"> , #{creator} </if>
+			<if test="createTime != null"> , #{createTime} </if>
+			<if test="status != null"> , #{status} </if>
+			<if test="modifyTimestamp != null"> , #{modifyTimestamp} </if>
+		</trim>   
+		)  
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delTService" parameterType="net.jahhan.codecenter.pojo.TService">
+		DELETE FROM t_service        
+		WHERE service_id = #{serviceId}
+	</delete>
+	
+	<!-- 删除指定的主键列表的记录-->
+	<delete id="delTServiceByIds" parameterType="collection">
+		DELETE FROM t_service         
+		WHERE service_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</delete>
+	
+	<!-- 全部更新 -->
+	<update id="updateTService" parameterType="net.jahhan.codecenter.pojo.TService">
+		UPDATE  t_service       
+		SET  
+		<trim prefixOverrides=",">
+				, service_code = #{serviceCode}
+				, service_name = #{serviceName}
+				, creator = #{creator}
+				, create_time = #{createTime}
+				, status = #{status}
+				, modify_timestamp = #{modifyTimestamp}
+		</trim>
+		WHERE
+			service_id = #{serviceId}
+	</update>
+	
+	<!-- 部分更新 -->
+	<update id="updatePartTService" parameterType="net.jahhan.codecenter.pojo.TService">
+		UPDATE  t_service       
+		SET  
+		<trim prefixOverrides=",">
+			<if test="serviceCode != null">, service_code= #{serviceCode} </if>
+			<if test="serviceName != null">, service_name= #{serviceName} </if>
+			<if test="creator != null">, creator= #{creator} </if>
+			<if test="createTime != null">, create_time= #{createTime} </if>
+			<if test="status != null">, status= #{status} </if>
+			<if test="modifyTimestamp != null">, modify_timestamp= #{modifyTimestamp} </if>
+		</trim>
+		WHERE 
+			service_id = #{serviceId}
+	</update>
+	
+	<!-- 修改指定的主键列表的记录，部分更新-->
+	<update id="updatePartTServiceByIds" parameterType="map">
+		UPDATE  t_service       
+		SET
+		<trim prefixOverrides=",">
+			<if test="newObj.serviceCode != null">, service_code= #{newObj.serviceCode} </if>
+			<if test="newObj.serviceName != null">, service_name= #{newObj.serviceName} </if>
+			<if test="newObj.creator != null">, creator= #{newObj.creator} </if>
+			<if test="newObj.createTime != null">, create_time= #{newObj.createTime} </if>
+			<if test="newObj.status != null">, status= #{newObj.status} </if>
+			<if test="newObj.modifyTimestamp != null">, modify_timestamp= #{newObj.modifyTimestamp} </if>
+		</trim>  
+		WHERE service_id IN
+		<foreach item="item" collection="ids" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+		<if test="oldObj!= null">
+			<if test="oldObj.serviceCode != null"> AND service_code = #{oldObj.serviceCode} </if>
+			<if test="oldObj.serviceName != null"> AND service_name = #{oldObj.serviceName} </if>
+			<if test="oldObj.creator != null"> AND creator = #{oldObj.creator} </if>
+			<if test="oldObj.createTime != null"> AND create_time = #{oldObj.createTime} </if>
+			<if test="oldObj.status != null"> AND status = #{oldObj.status} </if>
+			<if test="oldObj.modifyTimestamp != null"> AND modify_timestamp = #{oldObj.modifyTimestamp} </if>
+		</if>
+	</update>
+	
+	<!-- 查询单条-->
+	<select id="queryTService" parameterType="net.jahhan.codecenter.pojo.page.TServicePage" resultType="net.jahhan.codecenter.pojo.TService">
+		SELECT	
+			 service_id as  serviceId  ,
+			 service_code as  serviceCode  ,
+			 service_name as  serviceName  ,
+			 creator as  creator  ,
+			 create_time as  createTime  ,
+			 status as  status  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_service 
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="serviceCode != null"> AND service_code = #{serviceCode} </if>
+			<if test="serviceName != null"> AND service_name = #{serviceName} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT 1
+	</select>
+	
+	<!-- 精确查询 -->
+	<select id="listTService" parameterType="net.jahhan.codecenter.pojo.page.TServicePage" resultType="net.jahhan.codecenter.pojo.TService">
+		SELECT	
+			 service_id as  serviceId  ,
+			 service_code as  serviceCode  ,
+			 service_name as  serviceName  ,
+			 creator as  creator  ,
+			 create_time as  createTime  ,
+			 status as  status  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_service  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="serviceCode != null"> AND service_code = #{serviceCode} </if>
+			<if test="serviceName != null"> AND service_name = #{serviceName} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		<if test="order_by != null"> ORDER BY ${order_by} </if>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 精确查询数量 -->
+	<select id="countTService" parameterType="net.jahhan.codecenter.pojo.page.TServicePage" resultType="_long">
+		SELECT COUNT(1)	                          			   	     		        
+		FROM t_service    
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="serviceCode != null"> AND service_code = #{serviceCode} </if>
+			<if test="serviceName != null"> AND service_name = #{serviceName} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+	</select>
+	
+	
+	<!-- 根据id查询-->
+	<select id="listTServiceByIds" parameterType="collection" resultType="net.jahhan.codecenter.pojo.TService">
+		SELECT	
+			service_id as  serviceId  ,
+			service_code as  serviceCode  ,
+			service_name as  serviceName  ,
+			creator as  creator  ,
+			create_time as  createTime  ,
+			status as  status  ,
+			modify_timestamp as  modifyTimestamp  
+		FROM t_service    
+		WHERE service_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</select>
+	
+	<!-- 根据精确条件获取所有主键列表-->
+	<select id="listIds" parameterType="net.jahhan.codecenter.pojo.page.TServicePage" resultType="Long">
+		SELECT	
+			service_id as serviceId
+		FROM t_service  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="serviceCode != null"> AND service_code = #{serviceCode} </if>
+			<if test="serviceName != null"> AND service_name = #{serviceName} </if>
+			<if test="creator != null"> AND creator = #{creator} </if>
+			<if test="createTime != null"> AND create_time = #{createTime} </if>
+			<if test="status != null"> AND status = #{status} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 获取最大主键-->
+	<select id="selectMaxTServiceSequence" resultType="long">
+		SELECT max(service_id) as max_sequence FROM  t_service    
+	</select>	
+</mapper>

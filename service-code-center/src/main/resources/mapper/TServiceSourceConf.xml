@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 自动生成代码，请勿修改 -->
+<mapper namespace="TSERVICESOURCECONF">
+	<!-- 添加-->
+	<insert id="addTServiceSourceConf" parameterType="net.jahhan.codecenter.pojo.TServiceSourceConf" useGeneratedKeys="true" keyProperty="serviceSourceConfId">
+		INSERT INTO t_service_source_conf (	
+		<trim prefixOverrides=",">
+			<if test="serviceSourceConfId != null"> , service_source_conf_id </if>
+			<if test="serviceId != null"> , service_id </if>
+			<if test="sourceId != null"> , source_id </if>
+			<if test="codePath != null"> , code_path </if>
+			<if test="isDefault != null"> , is_default </if>
+			<if test="modifyTimestamp != null"> , modify_timestamp </if>
+		</trim>   
+		)
+		VALUES (               
+		<trim prefixOverrides=",">
+			<if test="serviceSourceConfId != null"> , #{serviceSourceConfId} </if>
+			<if test="serviceId != null"> , #{serviceId} </if>
+			<if test="sourceId != null"> , #{sourceId} </if>
+			<if test="codePath != null"> , #{codePath} </if>
+			<if test="isDefault != null"> , #{isDefault} </if>
+			<if test="modifyTimestamp != null"> , #{modifyTimestamp} </if>
+		</trim>   
+		)  
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delTServiceSourceConf" parameterType="net.jahhan.codecenter.pojo.TServiceSourceConf">
+		DELETE FROM t_service_source_conf        
+		WHERE service_source_conf_id = #{serviceSourceConfId}
+	</delete>
+	
+	<!-- 删除指定的主键列表的记录-->
+	<delete id="delTServiceSourceConfByIds" parameterType="collection">
+		DELETE FROM t_service_source_conf         
+		WHERE service_source_conf_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</delete>
+	
+	<!-- 全部更新 -->
+	<update id="updateTServiceSourceConf" parameterType="net.jahhan.codecenter.pojo.TServiceSourceConf">
+		UPDATE  t_service_source_conf       
+		SET  
+		<trim prefixOverrides=",">
+				, service_id = #{serviceId}
+				, source_id = #{sourceId}
+				, code_path = #{codePath}
+				, is_default = #{isDefault}
+				, modify_timestamp = #{modifyTimestamp}
+		</trim>
+		WHERE
+			service_source_conf_id = #{serviceSourceConfId}
+	</update>
+	
+	<!-- 部分更新 -->
+	<update id="updatePartTServiceSourceConf" parameterType="net.jahhan.codecenter.pojo.TServiceSourceConf">
+		UPDATE  t_service_source_conf       
+		SET  
+		<trim prefixOverrides=",">
+			<if test="serviceId != null">, service_id= #{serviceId} </if>
+			<if test="sourceId != null">, source_id= #{sourceId} </if>
+			<if test="codePath != null">, code_path= #{codePath} </if>
+			<if test="isDefault != null">, is_default= #{isDefault} </if>
+			<if test="modifyTimestamp != null">, modify_timestamp= #{modifyTimestamp} </if>
+		</trim>
+		WHERE 
+			service_source_conf_id = #{serviceSourceConfId}
+	</update>
+	
+	<!-- 修改指定的主键列表的记录，部分更新-->
+	<update id="updatePartTServiceSourceConfByIds" parameterType="map">
+		UPDATE  t_service_source_conf       
+		SET
+		<trim prefixOverrides=",">
+			<if test="newObj.serviceId != null">, service_id= #{newObj.serviceId} </if>
+			<if test="newObj.sourceId != null">, source_id= #{newObj.sourceId} </if>
+			<if test="newObj.codePath != null">, code_path= #{newObj.codePath} </if>
+			<if test="newObj.isDefault != null">, is_default= #{newObj.isDefault} </if>
+			<if test="newObj.modifyTimestamp != null">, modify_timestamp= #{newObj.modifyTimestamp} </if>
+		</trim>  
+		WHERE service_source_conf_id IN
+		<foreach item="item" collection="ids" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+		<if test="oldObj!= null">
+			<if test="oldObj.serviceId != null"> AND service_id = #{oldObj.serviceId} </if>
+			<if test="oldObj.sourceId != null"> AND source_id = #{oldObj.sourceId} </if>
+			<if test="oldObj.codePath != null"> AND code_path = #{oldObj.codePath} </if>
+			<if test="oldObj.isDefault != null"> AND is_default = #{oldObj.isDefault} </if>
+			<if test="oldObj.modifyTimestamp != null"> AND modify_timestamp = #{oldObj.modifyTimestamp} </if>
+		</if>
+	</update>
+	
+	<!-- 查询单条-->
+	<select id="queryTServiceSourceConf" parameterType="net.jahhan.codecenter.pojo.page.TServiceSourceConfPage" resultType="net.jahhan.codecenter.pojo.TServiceSourceConf">
+		SELECT	
+			 service_source_conf_id as  serviceSourceConfId  ,
+			 service_id as  serviceId  ,
+			 source_id as  sourceId  ,
+			 code_path as  codePath  ,
+			 is_default as  isDefault  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_service_source_conf 
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceSourceConfId != null"> AND service_source_conf_id = #{serviceSourceConfId} </if>
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="codePath != null"> AND code_path = #{codePath} </if>
+			<if test="isDefault != null"> AND is_default = #{isDefault} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT 1
+	</select>
+	
+	<!-- 精确查询 -->
+	<select id="listTServiceSourceConf" parameterType="net.jahhan.codecenter.pojo.page.TServiceSourceConfPage" resultType="net.jahhan.codecenter.pojo.TServiceSourceConf">
+		SELECT	
+			 service_source_conf_id as  serviceSourceConfId  ,
+			 service_id as  serviceId  ,
+			 source_id as  sourceId  ,
+			 code_path as  codePath  ,
+			 is_default as  isDefault  ,
+			 modify_timestamp as  modifyTimestamp  
+		FROM  t_service_source_conf  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceSourceConfId != null"> AND service_source_conf_id = #{serviceSourceConfId} </if>
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="codePath != null"> AND code_path = #{codePath} </if>
+			<if test="isDefault != null"> AND is_default = #{isDefault} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		<if test="order_by != null"> ORDER BY ${order_by} </if>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 精确查询数量 -->
+	<select id="countTServiceSourceConf" parameterType="net.jahhan.codecenter.pojo.page.TServiceSourceConfPage" resultType="_long">
+		SELECT COUNT(1)	                          			   	     		        
+		FROM t_service_source_conf    
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceSourceConfId != null"> AND service_source_conf_id = #{serviceSourceConfId} </if>
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="codePath != null"> AND code_path = #{codePath} </if>
+			<if test="isDefault != null"> AND is_default = #{isDefault} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+	</select>
+	
+	
+	<!-- 根据id查询-->
+	<select id="listTServiceSourceConfByIds" parameterType="collection" resultType="net.jahhan.codecenter.pojo.TServiceSourceConf">
+		SELECT	
+			service_source_conf_id as  serviceSourceConfId  ,
+			service_id as  serviceId  ,
+			source_id as  sourceId  ,
+			code_path as  codePath  ,
+			is_default as  isDefault  ,
+			modify_timestamp as  modifyTimestamp  
+		FROM t_service_source_conf    
+		WHERE service_source_conf_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">  
+			#{item}  
+		</foreach>
+	</select>
+	
+	<!-- 根据精确条件获取所有主键列表-->
+	<select id="listIds" parameterType="net.jahhan.codecenter.pojo.page.TServiceSourceConfPage" resultType="Long">
+		SELECT	
+			service_source_conf_id as serviceSourceConfId
+		FROM t_service_source_conf  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="serviceSourceConfId != null"> AND service_source_conf_id = #{serviceSourceConfId} </if>
+			<if test="serviceId != null"> AND service_id = #{serviceId} </if>
+			<if test="sourceId != null"> AND source_id = #{sourceId} </if>
+			<if test="codePath != null"> AND code_path = #{codePath} </if>
+			<if test="isDefault != null"> AND is_default = #{isDefault} </if>
+			<if test="modifyTimestamp != null"> AND modify_timestamp = #{modifyTimestamp} </if>
+		</trim>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 获取最大主键-->
+	<select id="selectMaxTServiceSourceConfSequence" resultType="long">
+		SELECT max(service_source_conf_id) as max_sequence FROM  t_service_source_conf    
+	</select>	
+</mapper>
