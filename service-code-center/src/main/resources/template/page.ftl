@@ -18,7 +18,7 @@ import ${serviceInfo.codePara["pojo_package_path"]}.${tableInfo.className};
 public class ${tableInfo.className}Page extends ${tableInfo.className} implements Pagable{
     private static final long serialVersionUID = -100000L;
     
-    private Paged paged=new Paged();
+    private Paged paged = new Paged();
     private String order_by;
     private Boolean nextPage;
     private String group_by;

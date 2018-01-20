@@ -20,6 +20,13 @@ import net.jahhan.spi.DBEventListener;
 public class ${tableInfo.className}Rep extends AbstractSmpTTLCountRepository implements DBEventListener{
 
 	private final static String PRE = BaseConfiguration.SERVICE + "_${tableInfo.className}Rep_";
+<#if tableInfo.tablePara["cacheExpireTime"]?number gt 0 >
+
+	@Override
+	protected int getExistSecond() {
+		return ${tableInfo.tablePara["cacheExpireTime"]};
+	}
+</#if>
 
 	@Override
 	protected String getKey(String id) {

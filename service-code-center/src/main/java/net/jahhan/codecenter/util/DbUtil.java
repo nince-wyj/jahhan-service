@@ -259,7 +259,7 @@ public class DbUtil {
 						for (int i = 1; i < exString.length; i++) {
 							String[] split = exString[i].split(":");
 							if (split.length > 1) {
-								tableParaMap.put(split[0], split[1]);
+								tableParaMap.put(split[0].replace("#", ""), split[1]);
 							}
 						}
 					}
