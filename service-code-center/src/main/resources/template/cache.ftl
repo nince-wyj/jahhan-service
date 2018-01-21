@@ -11,7 +11,7 @@ public class ${tableInfo.className}DaoCache extends ${tableInfo.className}DaoImp
 
 	@Override
 	protected boolean isCachable() {
-	<#if tableInfo.tablePara["redisCache"] == "true" >
+	<#if tableInfo.tablePara["dataCache"] == "true" >
 		return true;
 	<#else>
 		return false;

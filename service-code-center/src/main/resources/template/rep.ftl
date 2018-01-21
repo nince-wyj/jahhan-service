@@ -16,7 +16,7 @@ import net.jahhan.spi.DBEventListener;
  * 开发人员在此新增缓存操作
  * @author code-generate-service
  */
- @Singleton
+@Singleton
 public class ${tableInfo.className}Rep extends AbstractSmpTTLCountRepository implements DBEventListener{
 
 	private final static String PRE = BaseConfiguration.SERVICE + "_${tableInfo.className}Rep_";
